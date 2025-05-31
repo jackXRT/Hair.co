@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>New Order Notification</title>
+    <style>
+        body { font-family: 'Arial', sans-serif; line-height: 1.6; color: #333; }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+        .header { text-align: center; padding: 20px 0; background: #E53935; color: white; }
+        .order-alert { background: #fff8e1; padding: 20px; margin: 20px 0; border-left: 4px solid #ffc107; }
+        .footer { text-align: center; margin-top: 30px; color: #777; font-size: 0.9em; }
+        .button { display: inline-block; padding: 10px 20px; background: #7E57C2; 
+                 color: white; text-decoration: none; border-radius: 4px; margin-top: 15px; }
+        .highlight { background: #fffde7; padding: 10px; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>New Order Received!</h1>
+        </div>
+        
+        <p>Hello Admin,</p>
+        <p>A new order has been placed on EmpressoHair:</p>
+        
+        <div class="order-alert">
+            <div class="highlight">
+                <h2>Order #{{order_id}}</h2>
+                <p><strong>Customer:</strong> {{customer_name}}</p>
+                <p><strong>Email:</strong> {{customer_email}}</p>
+                <p><strong>Order Total:</strong> ${{order_total}}</p>
+                <p><strong>Order Date:</strong> {{order_date}}</p>
+            </div>
+            
+            <p style="margin-top: 15px">
+                <a href="https://empressohair.com/admin/orders.php" class="button">
+                    View Order in Dashboard
+                </a>
+            </p>
+        </div>
+        
+        <h3>Order Summary:</h3>
+        <ul>
+            {{#order_items}}
+            <li>{{quantity}} x {{name}} - ${{item_total}}</li>
+            {{/order_items}}
+        </ul>
+        
+        <p>Please process this order promptly.</p>
+        
+        <div class="footer">
+            <p>EmpressoHair Admin System | Automatic Notification</p>
+            <p>{{current_time}}</p>
+        </div>
+    </div>
+</body>
+</html>
