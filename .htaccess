@@ -1,0 +1,17 @@
+# Block access to sensitive files
+<Files ~ "(config|setup-database)\.php">
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Prevent directory listing
+Options -Indexes
+
+# Redirect admin to login if not authenticated
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_URI} ^/admin [NC]
+    RewriteCond %{REQUEST_URI} !^/admin/login\.php [NC]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(.*)$ /admin/login.php [R=302,L]
+</IfModule>
